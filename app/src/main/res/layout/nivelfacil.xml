@@ -4,246 +4,253 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAC4D1">
-
-    <ImageView
-        android:id="@+id/fondo1"
-        android:layout_width="557dp"
-        android:layout_height="809dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.717"
-        app:srcCompat="@drawable/fondo1" />
+    android:background="#DCF2F4"
+    android:backgroundTint="#333e4f"
+    >
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="nivel: facil"
+        android:id="@+id/levelTitle"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingTop="14dp"
+        android:text="@string/easy"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineOne"
+    />
+
+    <TextView
+        android:id="@+id/showPlayerOne"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:paddingTop="8dp"
+        android:fontFamily="@font/roboto_regular"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/showPlayerTwo"
+        app:layout_constraintTop_toBottomOf="@id/levelTitle"
+        app:layout_constraintBottom_toTopOf="@id/pointsPlayerOne"
+        android:textColorHint="@color/white"
+        android:hint="@string/playerName"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        />
 
-    <ImageView
-        android:id="@+id/carta2"
-        android:layout_width="67dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="232dp"
-        android:layout_marginEnd="220dp"
-        android:background="#E91E63"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/carta1"
-        android:layout_width="67dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="160dp"
-        android:background="#E91E63"
-        app:layout_constraintEnd_toStartOf="@+id/carta2"
-        app:layout_constraintHorizontal_bias="0.508"
+    <TextView
+        android:id="@+id/pointsPlayerOne"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/startPoints"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Btnsalir" />
+        app:layout_constraintEnd_toStartOf="@id/pointsPlayerTwo"
+        app:layout_constraintTop_toBottomOf="@id/showPlayerOne"
+        app:layout_constraintBottom_toTopOf="@id/playerOnTurn"
+        />
 
-    <ImageView
-        android:id="@+id/carta8"
-        android:layout_width="67dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="32dp"
-        android:background="#E91E63"
+    <TextView
+        android:id="@+id/showPlayerTwo"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:paddingTop="8dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/showPlayerOne"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/carta6"
-        app:layout_constraintTop_toBottomOf="@+id/carta4" />
+        app:layout_constraintTop_toBottomOf="@id/levelTitle"
+        app:layout_constraintBottom_toTopOf="@id/pointsPlayerTwo"
+        android:textColorHint="@color/white"
+        android:hint="@string/playerName"
+        />
 
-    <ImageView
-        android:id="@+id/carta7"
-        android:layout_width="67dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="28dp"
-        android:background="#E91E63"
+    <TextView
+        android:id="@+id/pointsPlayerTwo"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/startPoints"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/pointsPlayerOne"
+        app:layout_constraintBottom_toTopOf="@id/playerOnTurn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.633"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carta3" />
+        app:layout_constraintTop_toBottomOf="@id/showPlayerTwo"
+        />
 
-    <ImageView
-        android:id="@+id/carta6"
-        android:layout_width="67dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="28dp"
-        android:background="#E91E63"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.36"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carta2" />
-
-    <ImageView
-        android:id="@+id/carta5"
-        android:layout_width="67dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="28dp"
-        android:background="#E91E63"
-        app:layout_constraintEnd_toStartOf="@+id/carta6"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carta1" />
-
-    <ImageView
-        android:id="@+id/carta4"
-        android:layout_width="67dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="232dp"
-        android:layout_marginEnd="32dp"
-        android:background="#E91E63"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/carta2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/carta3"
-        android:layout_width="67dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="232dp"
-        android:background="#E91E63"
-        app:layout_constraintEnd_toStartOf="@+id/carta4"
-        app:layout_constraintStart_toEndOf="@+id/carta2"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/playerOnTurn"
-        android:layout_width="91dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif-smallcaps"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/roboto_regular"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textColor="#f6bf75"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        android:paddingTop="8dp"
+        android:hint="@string/playerName"
+        android:textColorHint="#f6bf75"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintTop_toBottomOf="@id/levelTitle"
+        app:layout_constraintBottom_toTopOf="@id/guidelineOne"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/player1"
-        android:layout_width="91dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="92dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="jugador" />
-
-    <TextView
-        android:id="@+id/player2"
-        android:layout_width="91dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="jugador" />
+        />
 
-    <TextView
-        android:id="@+id/textView5"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Turno"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4"
+    />
 
-    <ImageButton
-        android:id="@+id/Btnsalir"
-        android:layout_width="60dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
-
-    <Button
-        android:id="@+id/Btnreiniciar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:backgroundTint="#E91E63"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Reiniciar"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carta6"
-        app:layout_constraintVertical_bias="0.285" />
+    <!-- Cards -->
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="230dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="116dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.972"
+        android:id="@+id/card1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carta7"
-        app:srcCompat="@drawable/img_1" />
+        app:layout_constraintEnd_toStartOf="@id/card2"
+        app:layout_constraintTop_toBottomOf="@id/guidelineOne"
+        app:layout_constraintBottom_toTopOf="@id/card5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintVertical_chainStyle="spread"
+    />
 
-    <TextView
-        android:id="@+id/puntos1"
+    <ImageView
+        android:id="@+id/card2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#27a3e9"
+        android:backgroundTint="#27a3e9"
+        app:layout_constraintStart_toEndOf="@id/card1"
+        app:layout_constraintEnd_toStartOf="@id/card3"
+        app:layout_constraintTop_toBottomOf="@id/guidelineOne"
+        app:layout_constraintBottom_toTopOf="@id/card6"
+        app:layout_constraintVertical_chainStyle="spread"
+        />
+
+    <ImageView
+        android:id="@+id/card3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#27a3e9"
+        android:backgroundTint="#27a3e9"
+        app:layout_constraintStart_toEndOf="@id/card2"
+        app:layout_constraintEnd_toStartOf="@id/card4"
+        app:layout_constraintTop_toBottomOf="@id/guidelineOne"
+        app:layout_constraintBottom_toTopOf="@id/card7"
+        app:layout_constraintVertical_chainStyle="spread"
+        />
+
+    <ImageView
+        android:id="@+id/card4"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#27a3e9"
+        android:backgroundTint="#27a3e9"
+        app:layout_constraintStart_toEndOf="@id/card3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidelineOne"
+        app:layout_constraintBottom_toTopOf="@id/card8"
+        app:layout_constraintVertical_chainStyle="spread"
+        />
+
+    <ImageView
+        android:id="@+id/card5"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#27a3e9"
+        android:backgroundTint="#27a3e9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card6"
+        app:layout_constraintTop_toBottomOf="@id/card1"
+        app:layout_constraintBottom_toTopOf="@id/guidelineTwo"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        />
+
+    <ImageView
+        android:id="@+id/card6"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#27a3e9"
+        android:backgroundTint="#27a3e9"
+        app:layout_constraintStart_toEndOf="@id/card5"
+        app:layout_constraintEnd_toStartOf="@id/card7"
+        app:layout_constraintTop_toBottomOf="@id/card2"
+        app:layout_constraintBottom_toTopOf="@id/guidelineTwo"
+        />
+
+    <ImageView
+        android:id="@+id/card7"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#27a3e9"
+        android:backgroundTint="#27a3e9"
+        app:layout_constraintStart_toEndOf="@id/card6"
+        app:layout_constraintEnd_toStartOf="@id/card8"
+        app:layout_constraintTop_toBottomOf="@id/card3"
+        app:layout_constraintBottom_toTopOf="@id/guidelineTwo"
+        />
+
+    <ImageView
+        android:id="@+id/card8"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#27a3e9"
+        android:backgroundTint="#27a3e9"
+        app:layout_constraintStart_toEndOf="@id/card7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card4"
+        app:layout_constraintBottom_toTopOf="@id/guidelineTwo"
+        />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="20dp"
-        android:text="0"
-        android:textSize="20sp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75"
+        />
+
+    <Button
+        android:id="@+id/restartButton"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#f6bf75"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/restart"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player1" />
-
-    <TextView
-        android:id="@+id/puntos2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="64dp"
-        android:text="0"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/carta4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/puntos1"
-        app:layout_constraintTop_toBottomOf="@+id/player2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/guidelineTwo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

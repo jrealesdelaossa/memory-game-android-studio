@@ -3,4 +3,10 @@
     <string name="description">Default description</string>
     <string name="play">PLAY</string>
     <string name="playerName">Player</string>
+    <string name="selectedLevelTitle">Selected level</string>
+    <string name="easy">EASY</string>
+    <string name="normal">NORMAL</string>
+    <string name="hard">HARD</string>
+    <string name="startPoints">0</string>
+    <string name="restart">RESTART</string>
 </resources>

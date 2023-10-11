@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     TextView playerOnePoints;
     TextView playerTwoPoints;
 
-    private String[] uploadPreferences() {
+    private void uploadPreferences() {
         SharedPreferences preferences = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
         String namePlayerOne = preferences.getString("namePlayerOne", "Player One");
         String namePlayerTwo = preferences.getString("namePlayerTwo", "Player Two");
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         EditText inputPlayer2 = findViewById(R.id.id_name2);
         inputPlayer1.setText(namePlayerOne);
         inputPlayer2.setText(namePlayerTwo);
-        return new String[]{namePlayerOne, namePlayerTwo};
     }
 
     @Override
@@ -66,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Get shared preferences
-        String[] playerNames = uploadPreferences();
+        uploadPreferences();
         TextView inputPlayer1 = findViewById(R.id.id_name1);
         TextView inputPlayer2 = findViewById(R.id.id_name2);
 
@@ -78,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences preferences = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
 
-
-
             // Get names of players and save them in SharedPreferences
             String namePlayerOne = inputPlayer1.getText().toString();
             String namePlayerTwo = inputPlayer2.getText().toString();
@@ -87,48 +82,47 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("namePlayerTwo", namePlayerTwo);
             editor.apply();
 
-            Dialog dialog = new Dialog(MainActivity.this);
-            dialog.setContentView(R.layout.niveles);
-            dialog.show();
-            easyButton = dialog.findViewById(R.id.Btnfacil);
+            setContentView(R.layout.niveles);
+            easyButton = findViewById(R.id.easyButton);
 
             // Start level
             easyButton.setOnClickListener(view1 -> {
-                dialog.dismiss();
                 setContentView(R.layout.nivelfacil);
-                player1= findViewById(R.id.player1);
-                player2= findViewById(R.id.player2);
+                player1= findViewById(R.id.showPlayerOne);
+                player2= findViewById(R.id.showPlayerTwo);
                 playerOnTurn = findViewById(R.id.playerOnTurn);
-                goBack = findViewById(R.id.Btnsalir);
-                restart = findViewById(R.id.Btnreiniciar);
-                card1 = findViewById(R.id.carta1);
-                card2 = findViewById(R.id.carta2);
-                card3 = findViewById(R.id.carta3);
-                card4 = findViewById(R.id.carta4);
-                card5 = findViewById(R.id.carta5);
-                card6 = findViewById(R.id.carta6);
-                card7 = findViewById(R.id.carta7);
-                card8 = findViewById(R.id.carta8);
-                playerOnePoints = findViewById(R.id.puntos1);
-                playerTwoPoints = findViewById(R.id.puntos2);
+                restart = findViewById(R.id.restartButton);
+                card1 = findViewById(R.id.card1);
+                card2 = findViewById(R.id.card2);
+                card3 = findViewById(R.id.card3);
+                card4 = findViewById(R.id.card4);
+                card5 = findViewById(R.id.card5);
+                card6 = findViewById(R.id.card6);
+                card7 = findViewById(R.id.card7);
+                card8 = findViewById(R.id.card8);
+                playerOnePoints = findViewById(R.id.pointsPlayerOne);
+                playerTwoPoints = findViewById(R.id.pointsPlayerTwo);
 
                 ImageView[] imagview = {card1, card2, card3, card4, card5, card6, card7, card8};
 
-                player1.setText(inputPlayer1.getText());
-                player2.setText(inputPlayer2.getText());
-                tur = (int) (Math.random() * 2) + 1;
+                player1.setText(namePlayerOne);
+                player2.setText(namePlayerTwo);
 
-                if (tur == 1) {
-                    playerOnTurn.setText(inputPlayer1.getText());
-
-                } else if (tur == 2) {
-                    playerOnTurn.setText(inputPlayer2.getText());
-
+                // define turn
+                shift = (int) (Math.random() * 2) + 1;
+                switch (shift) {
+                    case 1:
+                        playerOnTurn.setText(namePlayerOne);
+                        break;
+                    case 2:
+                        playerOnTurn.setText(namePlayerTwo);
+                        break;
                 }
 
-                List<Integer> lista = aleatorio();
-                for (int i= 0; i<imagview.length; i++){
-                    imagview[i].setImageResource(lista.get(i));
+                // Generate list of images aleatory
+                List<Integer> cardList = mixImages();
+                for (int i= 0; i < imagview.length; i++){
+                    imagview[i].setImageResource(cardList.get(i));
                 }
                 new Handler().postDelayed(() -> {
                     for (ImageView imageView : imagview) {
@@ -136,21 +130,20 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, 1001);
 
-
                 for (int i= 0; i<imagview.length; i++){
                     //imagview[i].setImageResource(lista.get(i));//
                     final int pos =i;
 
                     imagview[i].setOnClickListener(v -> {
-                        animarcartas(imagview[pos], lista.get(pos));
+                        animarcartas(imagview[pos], cardList.get(pos));
                         //validar//
                         if(!cards){
                             carta_1= imagview[pos];
-                            imgCardOne = lista.get(pos);
+                            imgCardOne = cardList.get(pos);
                             cards = true;
                         }else {
                             carta_2= imagview[pos];
-                            imgCardTwo = lista.get(pos);
+                            imgCardTwo = cardList.get(pos);
                             cards = false;
                             boolean igual= (imgCardOne == imgCardTwo);
                             if(!igual){
@@ -201,6 +194,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
+                /*
+
 
                 goBack.setOnClickListener(view11 -> startActivity(new Intent( MainActivity.this,MainActivity.class)));
                 restart.setOnClickListener(v -> {
@@ -252,6 +247,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+
+                 */
             });
         });
     }
@@ -269,9 +266,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private List<Integer> aleatorio(){
-
-        int[] imgs ={R.drawable.ponyo, R.drawable.princesa, R.drawable.totoro, R.drawable.saske};
+    private List<Integer> mixImages(){
+        int[] imgs ={R.drawable.dark, R.drawable.divine, R.drawable.fire, R.drawable.water};
         List<Integer> lista = new ArrayList<>();
         while (lista.size() < 8){
             int imgAleatoria= imgs[(int) (Math.random()*4)];
