@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private List<Integer> mixImages(){
-        int[] images ={R.drawable.dark, R.drawable.divine, R.drawable.fire, R.drawable.water};
+        int[] images ={R.drawable.white, R.drawable.red, R.drawable.green, R.drawable.blue};
         List<Integer> list = new ArrayList<>();
         while (list.size() < 8){
             int randomImage= images[(int) (Math.random()*4)];
