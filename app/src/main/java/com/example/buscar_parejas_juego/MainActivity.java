@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.ViewPropertyAnimator;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnPlay;
     Button easyButton;
     TextView playerOnTurn;
-    ImageButton goBack;
     Button restart;
     ImageView card1;
     ImageView card2;
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView player1;
     TextView player2;
-    Integer tur;
     TextView playerOnePoints;
     TextView playerTwoPoints;
 
@@ -103,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 playerOnePoints = findViewById(R.id.pointsPlayerOne);
                 playerTwoPoints = findViewById(R.id.pointsPlayerTwo);
 
-                ImageView[] imagview = {card1, card2, card3, card4, card5, card6, card7, card8};
+                ImageView[] imageViewsCards = {card1, card2, card3, card4, card5, card6, card7, card8};
 
                 player1.setText(namePlayerOne);
                 player2.setText(namePlayerTwo);
@@ -121,169 +118,118 @@ public class MainActivity extends AppCompatActivity {
 
                 // Generate list of images aleatory
                 List<Integer> cardList = mixImages();
-                for (int i= 0; i < imagview.length; i++){
-                    imagview[i].setImageResource(cardList.get(i));
+                for (int i= 0; i < imageViewsCards.length; i++){
+                    imageViewsCards[i].setImageResource(cardList.get(i));
                 }
                 new Handler().postDelayed(() -> {
-                    for (ImageView imageView : imagview) {
+                    for (ImageView imageView : imageViewsCards) {
                         imageView.setImageResource(android.R.color.transparent);
                     }
                 }, 1001);
 
-                for (int i= 0; i<imagview.length; i++){
-                    //imagview[i].setImageResource(lista.get(i));//
+                for (int i= 0; i<imageViewsCards.length; i++){
                     final int pos =i;
 
-                    imagview[i].setOnClickListener(v -> {
-                        animarcartas(imagview[pos], cardList.get(pos));
-                        //validar//
+                    imageViewsCards[i].setOnClickListener(v -> {
+
+                        animateLetter(imageViewsCards[pos], cardList.get(pos));
                         if(!cards){
-                            carta_1= imagview[pos];
+                            carta_1= imageViewsCards[pos];
                             imgCardOne = cardList.get(pos);
                             cards = true;
                         }else {
-                            carta_2= imagview[pos];
+                            carta_2= imageViewsCards[pos];
                             imgCardTwo = cardList.get(pos);
                             cards = false;
-                            boolean igual= (imgCardOne == imgCardTwo);
-                            if(!igual){
+                            boolean match = (imgCardOne == imgCardTwo);
+
+                            if(!match){
                                 new Handler().postDelayed(() -> {
-                                    animarcartas(carta_1,android.R.color.transparent);
-                                    animarcartas(carta_2,android.R.color.transparent);
-                                    if (tur == 1) {
-                                        playerOnTurn.setText(inputPlayer2.getText());
-                                        tur = 2;
-                                        int puntosActuales= Integer.parseInt(playerOnePoints.getText().toString());
-                                        if(puntosActuales != 0){
-                                            puntosActuales = puntosActuales - 50;
-                                            String points;
-                                            points = Integer.toString(puntosActuales);
-                                            playerOnePoints.setText(points);
-                                        }
+                                    animateLetter(carta_1,android.R.color.transparent);
+                                    animateLetter(carta_2,android.R.color.transparent);
+                                },1000);
 
-                                    } else if (tur == 2) {
-                                        playerOnTurn.setText(inputPlayer1.getText());
-                                        tur = 1;
-                                        int puntosActuales= Integer.parseInt(playerTwoPoints.getText().toString());
-                                        if(puntosActuales != 0){
-                                            puntosActuales = puntosActuales - 50;
-                                            String points;
-                                            points = Integer.toString(puntosActuales);
-                                            playerTwoPoints.setText(points);
-                                        }
-
-                                    }
-
-                                },1500);
-                            }else{
-                                // sumar puntos
-                                if(tur == 1){
-                                    int puntosActuales= Integer.parseInt(playerOnePoints.getText().toString());
-                                    puntosActuales = puntosActuales + 100;
-                                    String points;
-                                    points = Integer.toString(puntosActuales);
-                                    playerOnePoints.setText(points);
-                                } else if (tur == 2) {
-                                    int puntosActuales= Integer.parseInt(playerTwoPoints.getText().toString());
-                                    puntosActuales = puntosActuales + 100;
-                                    String points;
-                                    points = Integer.toString(puntosActuales);
-                                    playerTwoPoints.setText(points);
+                                if (shift == 1) {
+                                    subtractPoints(playerOnePoints, playerTwoPoints, shift);
+                                    playerOnTurn.setText(namePlayerTwo);
+                                    shift = 2;
+                                } else if (shift == 2) {
+                                    subtractPoints(playerOnePoints, playerTwoPoints, shift);
+                                    playerOnTurn.setText(namePlayerOne);
+                                    shift = 1;
                                 }
+                            } else {
+                                scorePoints(playerOnePoints, playerTwoPoints, shift);
+                                carta_1.setEnabled(false);
+                                carta_2.setEnabled(false);
                             }
                         }
                     });
                 }
-                /*
-
-
-                goBack.setOnClickListener(view11 -> startActivity(new Intent( MainActivity.this,MainActivity.class)));
-                restart.setOnClickListener(v -> {
-                    int tur = (int) (Math.random() * 2) + 1;
-                    if (tur == 1) {
-                        playerOnTurn.setText(inputPlayer1.getText());
-                        shift = 1;
-                    } else {
-                        if (tur == 2) {
-                            playerOnTurn.setText(inputPlayer2.getText());
-                            shift = 2;
-                        }
-                    }
-                    List<Integer> lista1 = aleatorio();
-                    for (int i= 0; i<imagview.length; i++){
-                        imagview[i].setImageResource(lista1.get(i));
-
-                    }
-                    new Handler().postDelayed(() -> {
-                        for (ImageView imageView : imagview) {
-                            imageView.setImageResource(android.R.color.transparent);
-                        }
-                    }, 1001);
-
-                    for (int i= 0; i<imagview.length; i++){
-                        //imagview[i].setImageResource(lista.get(i));//
-                        final int pos =i;
-
-                        imagview[i].setOnClickListener(v1 -> {
-                            animarcartas(imagview[pos], lista1.get(pos));
-                            //validar//
-                            if(!cards){
-                                carta_1= imagview[pos];
-                                imgCardOne = lista1.get(pos);
-                                cards = true;
-                            }else {
-                                carta_2= imagview[pos];
-                                imgCardTwo = lista1.get(pos);
-                                cards = false;
-                                boolean igual= (imgCardOne == imgCardTwo);
-                                if(!igual){
-                                    new Handler().postDelayed(() -> {
-                                        animarcartas(carta_1,android.R.color.transparent);
-                                        animarcartas(carta_2,android.R.color.transparent);
-                                    },1500);
-                                }
-                            }
-                        });
-                    }
-                });
-
-
-                 */
             });
         });
     }
-    private void animarcartas(ImageView img,int image){
-        ViewPropertyAnimator animator= img.animate().withLayer().rotationY(90).setDuration(400);
+
+    private void subtractPoints(TextView playerOne, TextView playerTwo, int turn) {
+        if (turn == 1) {
+            int points = Integer.parseInt(playerOne.getText().toString());
+            if (points >= 50) {
+                points -= 50;
+                playerOne.setText(String.valueOf(points));
+            }
+        } else {
+            int points = Integer.parseInt(playerTwo.getText().toString());
+            if (points >= 50) {
+                points -= 50;
+                playerTwo.setText(String.valueOf(points));
+            }
+            playerTwo.setText(String.valueOf(points));
+        }
+    }
+    private void scorePoints(TextView playerOne, TextView playerTwo, int turn) {
+        if (turn == 1) {
+            int points = Integer.parseInt(playerOne.getText().toString());
+            points += 100;
+            playerOne.setText(String.valueOf(points));
+        } else {
+            int points = Integer.parseInt(playerTwo.getText().toString());
+            points += 100;
+            playerTwo.setText(String.valueOf(points));
+        }
+    }
+
+    private void animateLetter(ImageView img,int image){
+        ViewPropertyAnimator animator= img.animate().withLayer().rotationY(90).setDuration(50);
         animator.setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation){
                 super.onAnimationEnd(animation);
                 if(img.getRotationY()==90){
                     img.setImageResource(image);
-                    img.animate().rotationY(0).setDuration(400).setListener(null);
+                    img.animate().rotationY(0).setDuration(50).setListener(null);
                 }
             }
         });
 
     }
     private List<Integer> mixImages(){
-        int[] imgs ={R.drawable.dark, R.drawable.divine, R.drawable.fire, R.drawable.water};
-        List<Integer> lista = new ArrayList<>();
-        while (lista.size() < 8){
-            int imgAleatoria= imgs[(int) (Math.random()*4)];
+        int[] images ={R.drawable.dark, R.drawable.divine, R.drawable.fire, R.drawable.water};
+        List<Integer> list = new ArrayList<>();
+        while (list.size() < 8){
+            int randomImage= images[(int) (Math.random()*4)];
             int cont = 0;
-            for (int i= 0; i < lista.size(); i++){
+            for (int i = 0; i < list.size(); i++){
                 if (cont >= 2){
                     break;
                 }
-                if (lista.get(i)== imgAleatoria){
+                if (list.get(i)== randomImage){
                     cont++;
                 }
             }
             if (cont < 2){
-                lista.add(imgAleatoria);
+                list.add(randomImage);
             }
         }
-        return lista;
+        return list;
     }
 }
