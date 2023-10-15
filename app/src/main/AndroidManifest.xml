@@ -13,14 +13,13 @@
         android:theme="@style/Theme.Buscar_parejas_juego"
         tools:targetApi="31">
         <activity
-            android:name=".nivel_dificil"
-            android:exported="false" />
+            android:name=".SelectLevel"
+            android:exported="true">
+        </activity>
         <activity
-            android:name=".nivel_normal"
-            android:exported="false" />
-        <activity
-            android:name=".nivelfacil"
-            android:exported="false" />
+            android:name=".EasyLevel"
+            android:exported="true">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
