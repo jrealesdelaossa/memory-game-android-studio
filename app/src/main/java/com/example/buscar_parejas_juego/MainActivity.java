@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
         String namePlayerOne = preferences.getString("namePlayerOne", "Player One");
         String namePlayerTwo = preferences.getString("namePlayerTwo", "Player Two");
-        Log.i("log", "namePlayerOne: " + namePlayerOne);
-        Log.i("log", "namePlayerTwo: " + namePlayerTwo);
         EditText inputPlayer1 = findViewById(R.id.id_name1);
         EditText inputPlayer2 = findViewById(R.id.id_name2);
         inputPlayer1.setText(namePlayerOne);

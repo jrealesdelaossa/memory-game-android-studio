@@ -2,10 +2,12 @@ package com.example.buscar_parejas_juego;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.ViewPropertyAnimator;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -125,16 +127,27 @@ public class EasyLevel extends AppCompatActivity {
                         }
                     } else {
                         scorePoints(playerOnePoints, playerTwoPoints, shift);
+                        Log.i("log", "Player in turn " + shift);
                         carta_1.setEnabled(false);
                         carta_2.setEnabled(false);
                         matchCount.getAndIncrement();
                         if (matchCount.get() == 4) {
+                            // get context by send to updateScoreGlobal
+                            Context context = getApplicationContext();
+
+                            ScoreManager.updateScoreGlobal(context, playerOnePoints, playerTwoPoints, namePlayerOne, namePlayerTwo, shift);
                             startActivity(new Intent(EasyLevel.this, MainActivity.class));
+                            finish();
                         }
                     }
                 }
             });
         }
+
+        restart.setOnClickListener(v -> {
+            startActivity(new Intent(EasyLevel.this, EasyLevel.class));
+            finish();
+        });
 
     }
 
