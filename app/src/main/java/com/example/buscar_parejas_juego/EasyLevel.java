@@ -152,7 +152,7 @@ public class EasyLevel extends AppCompatActivity {
     }
 
     private List<Integer> mixImages() {
-        int[] images = {R.drawable.white, R.drawable.red, R.drawable.green, R.drawable.blue};
+        int[] images = {R.drawable.blue, R.drawable.green, R.drawable.red, R.drawable.white};
         List<Integer> list = new ArrayList<>();
         while (list.size() < 8) {
             int randomImage = images[(int) (Math.random() * 4)];

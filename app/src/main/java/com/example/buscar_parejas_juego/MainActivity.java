@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     Button btnPlay;
+    ImageButton btnSettings;
 
     private void uploadPreferences() {
         SharedPreferences preferences = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         TextView inputPlayer1 = findViewById(R.id.id_name1);
         TextView inputPlayer2 = findViewById(R.id.id_name2);
 
+        btnSettings = findViewById(R.id.settingsButton);
         btnPlay = findViewById(R.id.Btnjugar);
 
         btnPlay.setOnClickListener(view -> {
@@ -53,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, SelectLevel.class)
                     .putExtra("namePlayerOne", namePlayerOne)
                     .putExtra("namePlayerTwo", namePlayerTwo));
+        });
+
+        btnSettings.setOnClickListener(view -> {
+            playSound(R.raw.button);
+            startActivity(new Intent(MainActivity.this, settingsHome.class));
         });
     }
 
